@@ -14,7 +14,9 @@ public class Todo {
     private String username;
     private String description;
     private Boolean done;
+    public Todo () {
 
+    }
     public Todo(Long id, String username, String description, Boolean done) {
         this.id = id;
         this.username = username;
