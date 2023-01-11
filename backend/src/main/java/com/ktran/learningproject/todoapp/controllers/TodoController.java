@@ -17,18 +17,23 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 public class TodoController {
 
     private final TodoRepository repository;
+    private final TodoModelAssembler assembler;
 
-    public TodoController(TodoRepository repository) {
+    public TodoController(TodoRepository repository, TodoModelAssembler assembler) {
         this.repository = repository;
+        this.assembler = assembler;
     }
     //Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping("/users/{username}/todos")
     public CollectionModel<EntityModel<Todo>> getAllTodosByUsername(@PathVariable String username) {
+//        List<EntityModel<Todo>> todos = repository.findByUsername(username).stream()
+//                .map(todo -> EntityModel.of(todo,
+//                        linkTo(methodOn(TodoController.class).getOneTodo(todo.getId(), todo.getUsername())).withSelfRel(),
+//                        linkTo(methodOn(TodoController.class).getAllTodosByUsername(username)).withRel("todos")))
+//                .collect(Collectors.toList());
         List<EntityModel<Todo>> todos = repository.findByUsername(username).stream()
-                .map(todo -> EntityModel.of(todo,
-                        linkTo(methodOn(TodoController.class).getOneTodo(todo.getId(), todo.getUsername())).withSelfRel(),
-                        linkTo(methodOn(TodoController.class).getAllTodosByUsername(username)).withRel("todos")))
+                .map(assembler::toModel)
                 .collect(Collectors.toList());
         return CollectionModel.of(todos,
                 linkTo(methodOn(TodoController.class).getAllTodosByUsername(username)).withSelfRel());
@@ -47,9 +52,11 @@ public class TodoController {
 
         Todo todo = repository.findById(id)
                 .orElseThrow(() -> new TodoNotFoundException(id));
-        return EntityModel.of(todo,
-                linkTo(methodOn(TodoController.class).getOneTodo(id, username)).withSelfRel(),
-                linkTo(methodOn(TodoController.class).getAllTodosByUsername(username)).withRel("todos"));
+        return assembler.toModel(todo);
+//        return EntityModel.of(todo,
+//                linkTo(methodOn(TodoController.class).getOneTodo(id, username)).withSelfRel(),
+//                linkTo(methodOn(TodoController.class).getAllTodosByUsername(username)).withRel("todos"));
+
     }
 
     // Replace existing todo if id matches, else add a new todo
