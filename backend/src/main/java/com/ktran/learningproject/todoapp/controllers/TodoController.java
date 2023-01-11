@@ -3,9 +3,15 @@ package com.ktran.learningproject.todoapp.controllers;
 import com.ktran.learningproject.todoapp.entities.Todo;
 import com.ktran.learningproject.todoapp.repositories.TodoRepository;
 import com.ktran.learningproject.todoapp.exceptions.TodoNotFoundException;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 
 @RestController
 public class TodoController {
@@ -18,8 +24,14 @@ public class TodoController {
     //Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping("/users/{username}/todos")
-    public List<Todo> getAllTodosByUsername(@PathVariable String username) {
-        return repository.findByUsername(username);
+    public CollectionModel<EntityModel<Todo>> getAllTodosByUsername(@PathVariable String username) {
+        List<EntityModel<Todo>> todos = repository.findByUsername(username).stream()
+                .map(todo -> EntityModel.of(todo,
+                        linkTo(methodOn(TodoController.class).getOneTodo(todo.getId(), todo.getUsername())).withSelfRel(),
+                        linkTo(methodOn(TodoController.class).getAllTodosByUsername(username)).withRel("todos")))
+                .collect(Collectors.toList());
+        return CollectionModel.of(todos,
+                linkTo(methodOn(TodoController.class).getAllTodosByUsername(username)).withSelfRel());
     }
 
     //Save a new todo
@@ -31,8 +43,13 @@ public class TodoController {
 
     // Get a todo
     @GetMapping("/users/{username}/todos/{id}")
-    public Todo getOneTodo(@PathVariable Long id) {
-        return repository.findById(id).orElseThrow( () -> new TodoNotFoundException(id));
+    public EntityModel<Todo> getOneTodo(@PathVariable Long id, @PathVariable String username) {
+
+        Todo todo = repository.findById(id)
+                .orElseThrow(() -> new TodoNotFoundException(id));
+        return EntityModel.of(todo,
+                linkTo(methodOn(TodoController.class).getOneTodo(id, username)).withSelfRel(),
+                linkTo(methodOn(TodoController.class).getAllTodosByUsername(username)).withRel("todos"));
     }
 
     // Replace existing todo if id matches, else add a new todo
