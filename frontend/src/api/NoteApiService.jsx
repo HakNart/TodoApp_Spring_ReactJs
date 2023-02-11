@@ -1,8 +1,8 @@
 
 const baseUrl = "http://localhost:8081";
-
-const fetchAbsolute = (url) => fetch(baseUrl+url);
+// Modify baseUrl for production
+const fetchAbsolute = (url, ...params) => fetch(`${baseUrl}${url}`, ...params);
 
 export const retrieveAllNotes = () => {
-    return fetchAbsolute("/notes/");
+    return fetchAbsolute("/notes");
 }
