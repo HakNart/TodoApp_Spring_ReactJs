@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Notes from "./pages/Notes";
 
 function App() {
     return (
-        <div className="container mx-auto px-4">
-            Hello
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Notes/>}/>
+            </Routes>
+        </BrowserRouter>
     );
 }
 
