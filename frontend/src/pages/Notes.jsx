@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import { Container } from '@mui/system';
 import React, { useEffect, useState } from 'react'
 import { retrieveAllNotes } from '../api/NoteApiService';
+import TextCard from '../components/TextCard';
 
 export default function Notes() {
   const [notes, setNotes] = useState([]);
@@ -18,7 +19,7 @@ export default function Notes() {
     <Container>
       <Grid container>
         {notes.map((note => (
-          note.title
+          <TextCard key={note.id} note={note} />
         )))}
       </Grid>
     </Container>
