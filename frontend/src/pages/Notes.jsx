@@ -12,7 +12,7 @@ export default function Notes() {
     })
   },[])
   return (
-    <div>
+    <div className='bg-primary-100'>
         {notes.map((note)=>(
           <NoteCard note={note}/>
         ))}
