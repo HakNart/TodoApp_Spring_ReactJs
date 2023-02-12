@@ -2,7 +2,7 @@ import React from "react";
 
 export default function NoteCard({ note }) {
   return (
-    <div className="card card-compact w-96 bg-base-200 text-base-content border border-base-300">
+    <div className='card w-full max-w-[420px] mx-auto bg-base-200 text-base-content'>
         <div className="card-body">
             <h2 className="card-title">{note.title}</h2>
             {note.type == "text" && 
