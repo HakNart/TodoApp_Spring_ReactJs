@@ -12,7 +12,7 @@ export default function Notes() {
     })
   },[])
   return (
-    <div className='sm:grid grid-cols-2 md:grid-cols-3'>
+    <div className='sm:grid grid-cols-2 gap-1 mx-2 md:grid-cols-3'>
         {notes.map((note)=>(
           <NoteCard note={note}/>
         ))}

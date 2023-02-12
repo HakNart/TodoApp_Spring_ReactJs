@@ -4,7 +4,15 @@ export default function NoteCard({ note }) {
   return (
     <div className='card w-full max-w-[420px] mx-auto bg-base-200 text-base-content'>
         <div className="card-body">
-            <h2 className="card-title">{note.title}</h2>
+            <div className="flex justify-between">
+                <h2 className="card-title">{note.title}</h2>
+                <div>
+                    <button className="btn btn-sm btn-accent">Delete</button>
+                    <button className="btn btn-sm btm-secondar">Edit</button>
+                </div>
+                
+            </div>
+            
             {note.type == "text" && 
                 <p>{note.content}</p>
             }
