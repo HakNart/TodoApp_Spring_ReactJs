@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Header() {
   return (
-    <header className='mb-2'>
+    <header>
         <div className="navbar bg-secondary text-secondary-content">
             <div className='flex-1'>
                 <a className='btn btn-ghost'>Note App</a>
