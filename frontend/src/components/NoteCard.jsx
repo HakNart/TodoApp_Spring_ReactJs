@@ -2,12 +2,12 @@ import React from "react";
 
 export default function NoteCard({ note }) {
   return (
-    <div className='card w-full max-w-[420px] mx-auto bg-base-200 text-base-content'>
+    <div className='card w-full max-w-[420px] mx-auto my-1 bg-base-200 text-base-content'>
         <div className="card-body">
             <div className="flex justify-between">
                 <h2 className="card-title">{note.title}</h2>
-                <div>
-                    <button className="btn btn-sm btn-accent">Delete</button>
+                <div className="flex non-wrap">
+                    <button className="btn btn-sm btn-accent mr-1">Delete</button>
                     <button className="btn btn-sm btm-secondar">Edit</button>
                 </div>
                 
