@@ -6,7 +6,7 @@ export default function Layout({children}) {
     <div>
         {/* Header */}
         <Header />
-        <div>
+        <div className='app-area p-7'>
             {children}  
         </div>
         
