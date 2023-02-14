@@ -18,7 +18,10 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/:userName/notes" element={<Notes />} />
-          <Route path="/welcome/:userName" element={<WelcomeComponent />} />
+          <Route
+            path="/welcome/:userName"
+            element={<WelcomeComponent />}
+          />
         </Routes>
       </Layout>
     </BrowserRouter>
@@ -39,10 +42,11 @@ function WelcomeComponent() {
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">Hello {userName}</h1>
           <p className="py-6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum enim
-            delectus tempore suscipit ipsa magnam tenetur, laborum, consequuntur
-            distinctio impedit placeat minus atque veritatis unde, dolorem
-            voluptatem nihil cum debitis.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Rerum enim delectus tempore suscipit ipsa magnam
+            tenetur, laborum, consequuntur distinctio impedit
+            placeat minus atque veritatis unde, dolorem voluptatem
+            nihil cum debitis.
           </p>
           <button
             className="text-succcess-content btn-success btn"
@@ -58,21 +62,45 @@ function WelcomeComponent() {
 
 function LoginPage() {
   return (
-    <div className="container mx-auto mt-2">
-      
-      <form className="card flex-shrink-0 w-full max-w-md mx-auto">
-        <h1 className="text-center text-2xl">Create New Note</h1>
-        <div className="form-control">
-          <label className="input-group w-md">
-            <span className="bg-neutral text-neutral-content">Title</span>
-            <input
-              type="text"
-              placeholder="Title"
-              className="input input-bordered w-full"
-            />
-          </label>
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="card w-full max-w-sm flex-shrink-0 bg-base-100 shadow-2xl">
+          <form className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Username</span>
+              </label>
+              <input
+                type="text"
+                placeholder="email"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="text"
+                placeholder="password"
+                className="input input-bordered"
+              />
+              <label className="label">
+                <a
+                  href="#"
+                  className="link-hover label-text-alt link"
+                >
+                  Forgot password?
+                </a>
+              </label>
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn-primary btn">Login</button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
+
