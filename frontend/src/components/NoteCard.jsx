@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function NoteCard({ note }) {
   return (
@@ -21,7 +20,8 @@ export default function NoteCard({ note }) {
                     {note.items.map(item => (
                         <div className="form-control">
                             <label className="label cursor-pointer justify-start">
-                                <input type="checkbox" className="checkbox checkbox-success"/>
+                                {/* TODO: set onChange behaviror to response to check/uncheck action */}
+                                <input type="checkbox" className="checkbox checkbox-success" checked={item.checked}/>
                                 <span className="label-text pl-1">{item.text}</span>
                                 
                             </label>
