@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createNewNote } from '../api/NoteApiService';
 
-export function CreateNoteForm() {
+export function CreateNoteForm({refreshNotes}) {
   const [isFormExpanded, setFormExpanded] = useState(false);
   const [isCheckListForm, setCheckListForm] = useState(false);
   const [title, setTitle] = useState("");
@@ -25,10 +25,16 @@ export function CreateNoteForm() {
   }
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(refreshNotes);
     const note = {
       title: title,
+      type: 'text',
+      username: 'bob',
+      "created_at": (new Date()).toJSON(),
       content: content,
     }
+    console.log(note);
     createNewNote(note)
       .then((res) => res.json())
       .then((data) => {
@@ -37,6 +43,7 @@ export function CreateNoteForm() {
       .catch(err => {
         console.log('Error:', err);
       })
+    refreshNotes();
   }
 
   return (

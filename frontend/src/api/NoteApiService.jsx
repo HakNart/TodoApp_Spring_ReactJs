@@ -11,8 +11,8 @@ export const createNewNote = (data) => {
     return fetchAbsolute('/notes', {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+            'Content-type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body:JSON.stringify (data),
     })
 }
