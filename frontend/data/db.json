@@ -1,210 +1,216 @@
 {
-    "notes": [
+  "notes": [
+    {
+      "id": 1,
+      "title": "Shopping List",
+      "type": "checklist",
+      "username": "bob",
+      "created_at": "2023-02-10T12:00:00Z",
+      "items": [
         {
-            "id": 1,
-            "title": "Shopping List",
-            "type": "checklist",
-            "username": "bob",
-            "created_at": "2023-02-10T12:00:00Z",
-            "items": [
-                {
-                    "id": 1,
-                    "text": "Milk",
-                    "checked": false
-                },
-                {
-                    "id": 2,
-                    "text": "Bread",
-                    "checked": false
-                },
-                {
-                    "id": 3,
-                    "text": "Eggs",
-                    "checked": true
-                }
-            ]
+          "id": 1,
+          "text": "Milk",
+          "checked": false
         },
         {
-            "id": 2,
-            "title": "Meeting Notes",
-            "type": "text",
-            "username": "bob",
-            "created_at": "2023-02-09T10:00:00Z",
-            "content": "Important points discussed during the meeting: Agreed to launch new product in Q3, Reviewed sales performance and set targets for next quarter, Discussed budget and expenses"
+          "id": 2,
+          "text": "Bread",
+          "checked": false
         },
         {
-            "id": 3,
-            "title": "Todo List",
-            "type": "checklist",
-            "username": "bob",
-            "created_at": "2023-02-08T09:00:00Z",
-            "items": [
-                {
-                    "id": 1,
-                    "text": "Write a report",
-                    "checked": false
-                },
-                {
-                    "id": 2,
-                    "text": "Prepare a presentation",
-                    "checked": true
-                },
-                {
-                    "id": 3,
-                    "text": "Attend a meeting",
-                    "checked": false
-                }
-            ]
-        },
-        {
-            "id": 4,
-            "title": "Holiday Plans",
-            "type": "text",
-            "username": "bob",
-            "created_at": "2023-02-07T08:00:00Z",
-            "content": "Places to visit: spain, italy"
-        },
-        {
-            "id": 5,
-            "title": "Workout Routine",
-            "type": "checklist",
-            "username": "bob",
-            "created_at": "2023-02-06T07:00:00Z",
-            "items": [
-                {
-                    "id": 1,
-                    "text": "Warm-up",
-                    "checked": true
-                },
-                {
-                    "id": 2,
-                    "text": "Strength training",
-                    "checked": false
-                },
-                {
-                    "id": 3,
-                    "text": "Yoga",
-                    "checked": false
-                }
-            ]
-        },
-        {
-            "id": 6,
-            "title": "Holiday Plans",
-            "type": "text",
-            "username": "sandra",
-            "created_at": "2023-02-07T08:00:00Z",
-            "content": "Places to visit: korea, china"
-        },
-        {
-            "id": 7,
-            "title": "Shopping List",
-            "type": "checklist",
-            "username": "jack",
-            "created_at": "2023-02-06T07:00:00Z",
-            "items": [
-                {
-                    "id": 1,
-                    "text": "fish",
-                    "checked": true
-                },
-                {
-                    "id": 2,
-                    "text": "eggs",
-                    "checked": true
-                },
-                {
-                    "id": 3,
-                    "text": "Yoga pants",
-                    "checked": false
-                }
-            ]
-        },
-        {
-            "id": 7,
-            "title": "Shopping List 2",
-            "type": "checklist",
-            "username": "jack",
-            "created_at": "2023-02-06T07:00:00Z",
-            "items": [
-                {
-                    "id": 1,
-                    "text": "laptop",
-                    "checked": true
-                },
-                {
-                    "id": 2,
-                    "text": "gpu",
-                    "checked": true
-                },
-                {
-                    "id": 3,
-                    "text": "cup holder",
-                    "checked": false
-                },
-                {
-                    "id": 4,
-                    "text": "charger",
-                    "checked": false
-                }
-            ]
-        },
-        {
-            "id": 8,
-            "title": "Daily Journal",
-            "type": "text",
-            "username": "sandra",
-            "created_at": "2023-02-07T08:00:00Z",
-            "content": "I am loving this new place"
-        },
-        {
-            "id": 9,
-            "title": "Daily Journal",
-            "type": "text",
-            "username": "jack",
-            "created_at": "2023-02-07T08:00:00Z",
-            "content": "Everything is expensive"
-        },
-        {
-            "id": 10,
-            "title": "Shopping List",
-            "type": "checklist",
-            "username": "sandra",
-            "created_at": "2023-02-06T07:00:00Z",
-            "items": [
-                {
-                    "id": 1,
-                    "text": "sword",
-                    "checked": true
-                },
-                {
-                    "id": 2,
-                    "text": "bike",
-                    "checked": false
-                },
-                {
-                    "id": 3,
-                    "text": "armor",
-                    "checked": false
-                }
-            ]
+          "id": 3,
+          "text": "Eggs",
+          "checked": true
         }
-    ],
-    "users": [
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Meeting Notes",
+      "type": "text",
+      "username": "bob",
+      "created_at": "2023-02-09T10:00:00Z",
+      "content": "Important points discussed during the meeting: Agreed to launch new product in Q3, Reviewed sales performance and set targets for next quarter, Discussed budget and expenses"
+    },
+    {
+      "id": 3,
+      "title": "Todo List",
+      "type": "checklist",
+      "username": "bob",
+      "created_at": "2023-02-08T09:00:00Z",
+      "items": [
         {
-            "userid": 1,
-            "username": "bob",
-            "password": "bob123"
+          "id": 1,
+          "text": "Write a report",
+          "checked": false
         },
         {
-            "userid": 2,
-            "username": "sandra",
-            "password": "sandra123"
+          "id": 2,
+          "text": "Prepare a presentation",
+          "checked": true
         },
         {
-            "userid": 1,
-            "username": "jack",
-            "password": "jack123"
+          "id": 3,
+          "text": "Attend a meeting",
+          "checked": false
         }
-    ]
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Holiday Plans",
+      "type": "text",
+      "username": "bob",
+      "created_at": "2023-02-07T08:00:00Z",
+      "content": "Places to visit: spain, italy"
+    },
+    {
+      "id": 5,
+      "title": "Workout Routine",
+      "type": "checklist",
+      "username": "bob",
+      "created_at": "2023-02-06T07:00:00Z",
+      "items": [
+        {
+          "id": 1,
+          "text": "Warm-up",
+          "checked": true
+        },
+        {
+          "id": 2,
+          "text": "Strength training",
+          "checked": false
+        },
+        {
+          "id": 3,
+          "text": "Yoga",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Holiday Plans",
+      "type": "text",
+      "username": "sandra",
+      "created_at": "2023-02-07T08:00:00Z",
+      "content": "Places to visit: korea, china"
+    },
+    {
+      "id": 7,
+      "title": "Shopping List",
+      "type": "checklist",
+      "username": "jack",
+      "created_at": "2023-02-06T07:00:00Z",
+      "items": [
+        {
+          "id": 1,
+          "text": "fish",
+          "checked": true
+        },
+        {
+          "id": 2,
+          "text": "eggs",
+          "checked": true
+        },
+        {
+          "id": 3,
+          "text": "Yoga pants",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Daily Journal",
+      "type": "text",
+      "username": "sandra",
+      "created_at": "2023-02-07T08:00:00Z",
+      "content": "I am loving this new place"
+    },
+    {
+      "id": 9,
+      "title": "Daily Journal",
+      "type": "text",
+      "username": "jack",
+      "created_at": "2023-02-07T08:00:00Z",
+      "content": "Everything is expensive"
+    },
+    {
+      "id": 10,
+      "title": "Shopping List",
+      "type": "checklist",
+      "username": "sandra",
+      "created_at": "2023-02-06T07:00:00Z",
+      "items": [
+        {
+          "id": 1,
+          "text": "sword",
+          "checked": true
+        },
+        {
+          "id": 2,
+          "text": "bike",
+          "checked": false
+        },
+        {
+          "id": 3,
+          "text": "armor",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13,
+      "title": "Shopping List 2",
+      "type": "checklist",
+      "username": "jack",
+      "created_at": "2023-02-06T07:00:00Z",
+      "items": [
+        {
+          "id": 1,
+          "text": "laptop",
+          "checked": true
+        },
+        {
+          "id": 2,
+          "text": "gpu",
+          "checked": true
+        },
+        {
+          "id": 3,
+          "text": "cup holder",
+          "checked": false
+        },
+        {
+          "id": 4,
+          "text": "charger",
+          "checked": false
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "userid": 1,
+      "username": "bob",
+      "password": "bob123"
+    },
+    {
+      "userid": 2,
+      "username": "sandra",
+      "password": "sandra123"
+    },
+    {
+      "userid": 1,
+      "username": "jack",
+      "password": "jack123"
+    }
+  ]
 }

@@ -1,7 +1,9 @@
 
 export default function NoteCard({ note }) {
+  
+  const className = `card w-full max-w-[420px] mx-auto my-1 bg-base-200 text-base-content`
   return (
-    <div className='card w-full max-w-[420px] mx-auto my-1 bg-base-200 text-base-content'>
+    <div className={className} style={{order: `-${note.id}`}}>
         <div className="card-body">
             <div className="flex justify-between">
                 <h2 className="card-title">{note.title}</h2>

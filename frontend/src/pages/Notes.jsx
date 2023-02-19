@@ -17,7 +17,7 @@ export default function Notes() {
       <CreateNoteForm />
       <div className='notes grid sm grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-5 relative mx-auto my-12 ' >
         {notes.map((note)=>(
-          <NoteCard note={note}/>
+          <NoteCard note={note} key={note.id}/>
         ))}
     </div>
     </div>
