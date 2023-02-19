@@ -15,7 +15,7 @@ export function CreateNoteForm() {
   };
 
   return (
-    <div className='create-form'>
+    <section className='create-form'>
 
       <form className='create-note shadow-sm relative w-full max-w-[37rem] mx-auto my-0 p-5 bg-base-200 rounded-lg z-10' onFocus={toggleForm} onBlur={toggleForm}>
         <div className="form-control">
@@ -30,6 +30,6 @@ export function CreateNoteForm() {
         <button className='btn btn-success btn-sm'>Add</button>
 
       </form>
-    </div>
+    </section>
   );
 }
