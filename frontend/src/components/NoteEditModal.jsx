@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { updateNoteApi } from '../api/NoteApiService';
 import { NoteContext } from '../pages/Notes';
 
 export function NoteEditModal({note, isOpen, onClose}) {
   
   const [title, setTitle] = useState(note?note.title : '');
   const [content, setContent] = useState(note?note.content : '');
-  const [editMode, setEditMode] = useState(false);
   // if (note) {
   //   setEditMode(true);
   // } else  {
@@ -22,9 +22,18 @@ export function NoteEditModal({note, isOpen, onClose}) {
   const handleContentChange =(e) => {
     setContent(e.target.value);
   }
-  const handleNoteUpdate = () => {
+  const handleNoteUpdate = (e) => {
     e.preventDefault();
-
+    note.title = title;
+    note.content = content;
+    updateNoteApi(note.id, note)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Sucess:", data)
+      })
+      .catch(err => {
+        console.log('Error:', err);
+      })
     onClose();
   };
   

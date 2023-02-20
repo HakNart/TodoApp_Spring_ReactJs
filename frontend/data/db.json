@@ -292,11 +292,11 @@
       "id": 38
     },
     {
-      "title": "test2",
+      "title": "updatenote2",
       "type": "text",
       "username": "bob",
       "created_at": "2023-02-20T06:10:55.284Z",
-      "content": "adfasdgadfb",
+      "content": "let's sfa note 2",
       "id": 39
     },
     {
@@ -316,11 +316,11 @@
       "id": 41
     },
     {
-      "title": "4qt4",
+      "title": "UpdatedNote",
       "type": "text",
       "username": "bob",
       "created_at": "2023-02-20T06:13:58.470Z",
-      "content": "adfgdfgad",
+      "content": "Let's see",
       "id": 42
     }
   ],

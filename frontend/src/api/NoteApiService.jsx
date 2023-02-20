@@ -16,3 +16,13 @@ export const createNewNote = (data) => {
         body:JSON.stringify (data),
     })
 }
+
+export const updateNoteApi= (id, data) => {
+    return fetchAbsolute(`/notes/${id}`, {
+        method: "PUT",
+        headers: {
+            'Content-type': 'application/json',
+        },
+        body:JSON.stringify (data),
+    })
+}
