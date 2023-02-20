@@ -18,10 +18,6 @@ export default function NoteCard({ note, onEdit}) {
         <div className="card-body">
           <div className="flex justify-between">
             <h2 className="card-title">{note.title}</h2>
-            <div className="non-wrap flex">
-              <button className="btn-accent btn-sm btn mr-1">Delete</button>
-              <button className="btm-secondar btn-sm btn">Edit</button>
-            </div>
           </div>
 
           {note.type == "text" && <p>{note.content}</p>}

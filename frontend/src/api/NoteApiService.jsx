@@ -26,3 +26,9 @@ export const updateNoteApi= (id, data) => {
         body:JSON.stringify (data),
     })
 }
+
+export const deleteNoteApi= (id) => {
+    return fetchAbsolute(`/notes/${id}`, {
+        method: "DELETE",
+    })
+}

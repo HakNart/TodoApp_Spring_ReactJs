@@ -284,44 +284,12 @@
       "id": 37
     },
     {
-      "title": "h323",
+      "title": "updateNote",
       "type": "text",
       "username": "bob",
       "created_at": "2023-02-20T00:25:13.656Z",
-      "content": "asdfadf",
+      "content": "asdfadfasdfasd",
       "id": 38
-    },
-    {
-      "title": "updatenote2",
-      "type": "text",
-      "username": "bob",
-      "created_at": "2023-02-20T06:10:55.284Z",
-      "content": "let's sfa note 2",
-      "id": 39
-    },
-    {
-      "title": "asdt",
-      "type": "text",
-      "username": "bob",
-      "created_at": "2023-02-20T06:11:45.214Z",
-      "content": "asdfadgadfg",
-      "id": 40
-    },
-    {
-      "title": "tetasda",
-      "type": "text",
-      "username": "bob",
-      "created_at": "2023-02-20T06:13:22.203Z",
-      "content": "asdfadfbadfb",
-      "id": 41
-    },
-    {
-      "title": "UpdatedNote",
-      "type": "text",
-      "username": "bob",
-      "created_at": "2023-02-20T06:13:58.470Z",
-      "content": "Let's see",
-      "id": 42
     }
   ],
   "users": [

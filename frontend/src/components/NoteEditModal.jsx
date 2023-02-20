@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { updateNoteApi } from '../api/NoteApiService';
 import { NoteContext } from '../pages/Notes';
 
-export function NoteEditModal({note, isOpen, onClose}) {
+export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
   
   const [title, setTitle] = useState(note?note.title : '');
   const [content, setContent] = useState(note?note.content : '');
@@ -26,16 +26,14 @@ export function NoteEditModal({note, isOpen, onClose}) {
     e.preventDefault();
     note.title = title;
     note.content = content;
-    updateNoteApi(note.id, note)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Sucess:", data)
-      })
-      .catch(err => {
-        console.log('Error:', err);
-      })
+    onUpdate(note.id, note);
     onClose();
   };
+  const handleNoteDelete = (e) => {
+    e.preventDefault();
+    onDelete(note.id);
+    onClose();
+  }
   
   return (
     <div 
@@ -57,7 +55,11 @@ export function NoteEditModal({note, isOpen, onClose}) {
             onChange={handleContentChange}
             className="min-h-20 m-0 block max-h-[50vh] w-full resize-none border-0 border-none border-current bg-transparent p-0 leading-normal outline-none"
           ></textarea>
-          <button className="btn-sm btn">Save</button>
+          <div className='flex justify-between'>
+          <button className="btn btn-sm btn-success">Save</button>
+          <button className='btn btn-error btn-sm' onClick={handleNoteDelete}>Delete</button>
+          </div>
+          
         </form>
       </div>
     </div>

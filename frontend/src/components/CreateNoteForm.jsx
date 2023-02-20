@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { createNewNote } from '../api/NoteApiService';
+import { createNewNote, updateNoteApi } from '../api/NoteApiService';
 import { NoteContext } from '../pages/Notes';
 
 export function CreateNoteForm({submitNote}) {
@@ -28,7 +28,7 @@ export function CreateNoteForm({submitNote}) {
     setContent(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const onNoteCreate = (e) => {
     e.preventDefault();
     console.log(refreshNotes);
     const note = {
@@ -49,11 +49,21 @@ export function CreateNoteForm({submitNote}) {
       })
     submitNote();
   }
+  // const onNoteUpdate = (id, note) => {
+  //   updateNoteApi(id, note)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log("Sucess:", data)
+  //     })
+  //     .catch(err => {
+  //       console.log('Error:', err);
+  //     })
+  // }
 
   return (
     <section className='create-form'>
 
-      <form className='create-note shadow-sm relative w-full max-w-[37rem] mx-auto my-0 p-5 bg-base-200 rounded-lg' onFocus={toggleForm} onBlur={toggleForm} onSubmit={handleSubmit}>
+      <form className='create-note shadow-sm relative w-full max-w-[37rem] mx-auto my-0 p-5 bg-base-200 rounded-lg' onFocus={toggleForm} onBlur={toggleForm} onSubmit={onNoteCreate}>
         
         <input type="text" name='title' placeholder='Title' className="w-full font-bold block border-none outline-none m-b-0 p-0 bg-transparent" onChange={handleTitleChange}  />
 
