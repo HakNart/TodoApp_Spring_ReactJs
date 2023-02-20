@@ -6,15 +6,6 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
   
   const [title, setTitle] = useState(note?note.title : '');
   const [content, setContent] = useState(note?note.content : '');
-  // if (note) {
-  //   setEditMode(true);
-  // } else  {
-  //   setEditMode(false);
-  // }
-  // useEffect(() => {
-  //   setTitle(note.title);
-  //   setContent(note.content);
-  // }, [editMode])
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);

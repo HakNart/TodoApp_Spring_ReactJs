@@ -49,16 +49,7 @@ export function CreateNoteForm({submitNote}) {
       })
     submitNote();
   }
-  // const onNoteUpdate = (id, note) => {
-  //   updateNoteApi(id, note)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log("Sucess:", data)
-  //     })
-  //     .catch(err => {
-  //       console.log('Error:', err);
-  //     })
-  // }
+
 
   return (
     <section className='create-form'>

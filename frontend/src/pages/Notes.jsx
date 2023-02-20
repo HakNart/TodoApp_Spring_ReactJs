@@ -8,7 +8,6 @@ export const NoteContext = createContext(null);
 export default function Notes() {
   const [notes, setNotes] = useState([]);
   const [isUpdated, setUpdated] = useState(false);
-  const [editMode, setEditMode] = useState(false);
   const [selectedNote, setSelectedNote] = useState(null);
   useEffect(()=>{
     retrieveAllNotes()
@@ -20,18 +19,6 @@ export default function Notes() {
     setUpdated(false);
   },[isUpdated])
   
-  
-  
-
-  // const toggleEditOn = (note) => {
-    
-  //   setSelectedNote(note);
-  //   setEditMode(true);
-    
-  // }
-  // const toggleEditOff = () => {
-  //   setEditMode(false);
-  // }
   
   const refreshNotes = () => {
     setUpdated(true);
