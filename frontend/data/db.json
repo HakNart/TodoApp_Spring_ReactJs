@@ -242,6 +242,54 @@
       "created_at": "2023-02-19T18:14:33.746Z",
       "content": "asdfasdfasdfasdf",
       "id": 32
+    },
+    {
+      "title": "test2",
+      "type": "text",
+      "username": "bob",
+      "created_at": "2023-02-19T20:13:33.533Z",
+      "content": "here is some notes\nfafs",
+      "id": 33
+    },
+    {
+      "title": "ndasdf",
+      "type": "text",
+      "username": "bob",
+      "created_at": "2023-02-19T23:02:01.558Z",
+      "content": "sdfadfadf",
+      "id": 34
+    },
+    {
+      "title": "ndasdf",
+      "type": "text",
+      "username": "bob",
+      "created_at": "2023-02-19T23:03:41.015Z",
+      "content": "sdfadfadf",
+      "id": 35
+    },
+    {
+      "title": "Note2",
+      "type": "text",
+      "username": "bob",
+      "created_at": "2023-02-20T00:02:40.375Z",
+      "content": "Hello world",
+      "id": 36
+    },
+    {
+      "title": "h2",
+      "type": "text",
+      "username": "bob",
+      "created_at": "2023-02-20T00:20:18.747Z",
+      "content": "asdfasd",
+      "id": 37
+    },
+    {
+      "title": "h323",
+      "type": "text",
+      "username": "bob",
+      "created_at": "2023-02-20T00:25:13.656Z",
+      "content": "asdfadf",
+      "id": 38
     }
   ],
   "users": [
@@ -256,7 +304,7 @@
       "password": "sandra123"
     },
     {
-      "userid": 1,
+      "userid": 3,
       "username": "jack",
       "password": "jack123"
     }
