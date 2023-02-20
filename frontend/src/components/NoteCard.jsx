@@ -4,11 +4,12 @@ import { NoteContext } from "../pages/Notes";
 
 export default function NoteCard({ note }) {
   const className = `card w-full max-w-[420px] mx-auto my-1 bg-base-200 text-base-content`;
-  const {setToggleNoteEdit, setSelectedNote} = useContext(NoteContext);
+  const {toggleEditOn} = useContext(NoteContext);
 
   const handleNoteCardClick = () => {
     // setToggleNoteEdit(true);
-    setSelectedNote(note);
+
+    toggleEditOn(note);
   }
 
   return (

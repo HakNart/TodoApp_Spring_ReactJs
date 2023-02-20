@@ -6,11 +6,8 @@ import { NoteEditModal } from './NoteEditModal';
 
 export const NoteContext = createContext(null);
 export default function Notes() {
-  const [notes, setNotes] = useState([]);
   const [isUpdated, setUpdated] = useState(false);
-  const [toggleNoteEdit, setToggleNoteEdit] = useState(false);
-  const [selectedNote, setSelectedNote] = useState(null);
-
+  const [editMode, setEditMode] = useState(false);
   useEffect(()=>{
     retrieveAllNotes()
     .then(res => res.json())
@@ -19,11 +16,25 @@ export default function Notes() {
     })
     setUpdated(false);
   },[isUpdated])
+  const [notes, setNotes] = useState([]);
+  
+  const [selectedNote, setSelectedNote] = useState(null);
+
+  const toggleEditOn = (note) => {
+    
+    setSelectedNote(note);
+    setEditMode(true);
+    
+  }
+  const toggleEditOff = () => {
+    setEditMode(false);
+  }
+  
   const refreshNotes = () => {
     setUpdated(true);
   }
   return (
-    <NoteContext.Provider value={{selectedNote, setSelectedNote, refreshNotes, toggleNoteEdit, setToggleNoteEdit ,refreshNotes}}>
+    <NoteContext.Provider value={{selectedNote, setSelectedNote, toggleEditOn, toggleEditOff ,refreshNotes}}>
       <div className='note-app'>
         <CreateNoteForm />
         <div className='notes grid sm grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-5 relative mx-auto my-12 ' >
@@ -31,8 +42,8 @@ export default function Notes() {
             <NoteCard note={note} key={note.id} />
           ))}
         </div>
-
-        <NoteEditModal/>
+        <NoteEditModal note={selectedNote} editMode={editMode}/>
+        
 
       </div>
     </NoteContext.Provider>
