@@ -1,19 +1,19 @@
 import { useContext } from "react";
-import { NoteEditModal } from "../pages/NoteEditModal";
+import { NoteEditModal } from "./NoteEditModal";
 import { NoteContext } from "../pages/Notes";
 
-export default function NoteCard({ note }) {
+export default function NoteCard({ note, onEdit}) {
   const className = `card w-full max-w-[420px] mx-auto my-1 bg-base-200 text-base-content`;
-  const {toggleEditOn} = useContext(NoteContext);
+  // const {toggleEditOn} = useContext(NoteContext);
 
-  const handleNoteCardClick = () => {
-    // setToggleNoteEdit(true);
+  // const handleNoteCardClick = () => {
+  //   // setToggleNoteEdit(true);
 
-    toggleEditOn(note);
-  }
+  //   toggleEditOn(note);
+  // }
 
   return (
-    <div className="note-card" style={{ order: `-${note.id}` }} onClick={handleNoteCardClick}>
+    <div className="note-card" onClick={onEdit}>
       <div className={className}>
         <div className="card-body">
           <div className="flex justify-between">

@@ -1,16 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { NoteContext } from './Notes';
+import { NoteContext } from '../pages/Notes';
 
-export function NoteEditModal({note, editMode}) {
-  const { toggleEditOff} = useContext(NoteContext);
-  console.log("edit mode", editMode)
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [visible, setVisible] = useState({display:"hidden"})
-  if (editMode && note) {
-    setTitle(note.title);
-    setContent(note.content);
-    setVisible({display:"block"})
+export function NoteEditModal({note, isOpen, onClose}) {
+  
+  const [title, setTitle] = useState(note?.title || '');
+  const [content, setContent] = useState(note?.content || '');
+
+  if (!note) {
+    return null;
   }
 
   const handleTitleChange = (e) => {
@@ -21,13 +18,14 @@ export function NoteEditModal({note, editMode}) {
   }
   const handleNoteUpdate = () => {
     e.preventDefault();
-    setToggleNoteEdit(false);
+
+    onClose();
   };
   
   return (
     <div 
       className="hidden z-1 fixed left-0 top-0 h-screen w-screen overflow-y-hidden bg-[rgba(0,0,0,0.2)] pt-24"
-      style={{display:'hidden'}}
+      style={{display: isOpen? 'block': 'none'}}
       >
       <div className="m-auto max-w-md bg-base-200 p-5 text-base-content rounded-lg">
         <form onSubmit={handleNoteUpdate}>
