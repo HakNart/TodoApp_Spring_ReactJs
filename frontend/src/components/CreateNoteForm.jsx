@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { createNewNote } from '../api/NoteApiService';
 import { NoteContext } from '../pages/Notes';
 
-export function CreateNoteForm() {
+export function CreateNoteForm({submitNote}) {
   const [isFormExpanded, setFormExpanded] = useState(false);
   const [isCheckListForm, setCheckListForm] = useState(false);
   const [title, setTitle] = useState("");
@@ -47,7 +47,7 @@ export function CreateNoteForm() {
       .catch(err => {
         console.log('Error:', err);
       })
-    refreshNotes();
+    submitNote();
   }
 
   return (

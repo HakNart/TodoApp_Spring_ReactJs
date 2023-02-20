@@ -1,14 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NoteContext } from '../pages/Notes';
 
 export function NoteEditModal({note, isOpen, onClose}) {
   
-  const [title, setTitle] = useState(note?.title || '');
-  const [content, setContent] = useState(note?.content || '');
-
-  if (!note) {
-    return null;
-  }
+  const [title, setTitle] = useState(note?note.title : '');
+  const [content, setContent] = useState(note?note.content : '');
+  const [editMode, setEditMode] = useState(false);
+  // if (note) {
+  //   setEditMode(true);
+  // } else  {
+  //   setEditMode(false);
+  // }
+  // useEffect(() => {
+  //   setTitle(note.title);
+  //   setContent(note.content);
+  // }, [editMode])
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -34,6 +40,7 @@ export function NoteEditModal({note, isOpen, onClose}) {
             value={title}
             onChange={handleTitleChange}
             className="m-b-0 block w-full border-none bg-transparent p-0 font-bold outline-none" />
+            
           <textarea
             rows={4}
             name="content"
