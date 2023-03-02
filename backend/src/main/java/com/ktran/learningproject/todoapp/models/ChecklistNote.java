@@ -9,6 +9,7 @@ import java.util.Objects;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "note_id")
+@DiscriminatorValue("checklist")
 public class ChecklistNote extends Note{
 
 
@@ -21,7 +22,11 @@ public class ChecklistNote extends Note{
 
     public ChecklistNote(String title, String username, LocalDateTime createdAt) {
         super(title, username, createdAt);
-        super.setType("check_list");
+    }
+
+    public ChecklistNote(String title, String username, LocalDateTime createdAt, List<ListItem> listItems) {
+        super(title, username, createdAt);
+        this.listItems = listItems;
     }
 
     @Override

@@ -8,7 +8,12 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name="type", discriminatorType = DiscriminatorType.STRING
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value=TextNote.class, name="text"),
+        @JsonSubTypes.Type(value=ChecklistNote.class, name="checklist")
+})
+@DiscriminatorColumn(name="type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Note {
 
     @Id
@@ -17,7 +22,8 @@ public abstract class Note {
 
     private String title, userName;
     private LocalDateTime createdAt;
-    private String type;
+//    @Column(name="type")
+//    private String type;
 
     public Note() {
 
@@ -33,12 +39,12 @@ public abstract class Note {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Note note = (Note) o;
-        return Objects.equals(id, note.id) && Objects.equals(title, note.title) && Objects.equals(userName, note.userName) && Objects.equals(createdAt, note.createdAt) && Objects.equals(type, note.type);
+        return Objects.equals(id, note.id) && Objects.equals(title, note.title) && Objects.equals(userName, note.userName) && Objects.equals(createdAt, note.createdAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, userName, createdAt, type);
+        return Objects.hash(id, title, userName, createdAt);
     }
 
     public Long getId() {
@@ -73,11 +79,5 @@ public abstract class Note {
         this.createdAt = createdAt;
     }
 
-    public String getType() {
-        return type;
-    }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 }

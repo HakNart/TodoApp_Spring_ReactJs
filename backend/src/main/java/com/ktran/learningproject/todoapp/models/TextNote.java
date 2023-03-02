@@ -1,5 +1,6 @@
 package com.ktran.learningproject.todoapp.models;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
@@ -8,12 +9,12 @@ import java.util.Objects;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "note_id")
+@DiscriminatorValue("text")
 public class TextNote extends Note {
     private String content;
 
     public TextNote(String title, String username, LocalDateTime createdAt, String content) {
         super(title, username, createdAt);
-        super.setType("text");
         this.content = content;
     }
 
