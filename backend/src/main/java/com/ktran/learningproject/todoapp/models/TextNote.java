@@ -1,18 +1,19 @@
-package com.ktran.learningproject.todoapp.entities;
+package com.ktran.learningproject.todoapp.models;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@DiscriminatorValue("text")
+@PrimaryKeyJoinColumn(name = "note_id")
 public class TextNote extends Note {
     private String content;
 
     public TextNote(String title, String username, LocalDateTime createdAt, String content) {
         super(title, username, createdAt);
+        super.setType("text");
         this.content = content;
     }
 
@@ -26,7 +27,6 @@ public class TextNote extends Note {
                 "content='" + content + '\'' +
                 '}';
     }
-
 
     @Override
     public boolean equals(Object o) {

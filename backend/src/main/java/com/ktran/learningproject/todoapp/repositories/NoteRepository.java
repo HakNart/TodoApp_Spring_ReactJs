@@ -1,11 +1,14 @@
 package com.ktran.learningproject.todoapp.repositories;
 
-import com.ktran.learningproject.todoapp.entities.Note;
-import com.ktran.learningproject.todoapp.entities.TextNote;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import com.ktran.learningproject.todoapp.models.Note;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@RepositoryRestResource(collectionResourceRel = "notes", path="notes")
-public interface NoteRepository extends CrudRepository<Note, Long> {
+
+import java.util.List;
+
+
+public interface NoteRepository extends JpaRepository<Note, Long> {
+
+    List<Note> findAllByUserName(String userName);
 }
 

@@ -1,4 +1,4 @@
-package com.ktran.learningproject.todoapp.entities;
+package com.ktran.learningproject.todoapp.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

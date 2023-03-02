@@ -1,10 +1,10 @@
 package com.ktran.learningproject.todoapp.repositories;
 
-import com.ktran.learningproject.todoapp.entities.TextNote;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import com.ktran.learningproject.todoapp.models.TextNote;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@RepositoryRestResource(collectionResourceRel = "textnotes", path = "notes")
-public interface TextNoteRepository extends CrudRepository<TextNote, Long> {
+
+
+public interface TextNoteRepository extends JpaRepository<TextNote,Long> {
 
 }

@@ -1,7 +1,7 @@
 package com.ktran.learningproject.todoapp.configuration;
 
 
-import com.ktran.learningproject.todoapp.entities.Todo;
+import com.ktran.learningproject.todoapp.models.Todo;
 import com.ktran.learningproject.todoapp.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

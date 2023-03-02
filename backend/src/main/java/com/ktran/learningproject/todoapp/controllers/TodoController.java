@@ -1,6 +1,6 @@
 package com.ktran.learningproject.todoapp.controllers;
 
-import com.ktran.learningproject.todoapp.entities.Todo;
+import com.ktran.learningproject.todoapp.models.Todo;
 import com.ktran.learningproject.todoapp.repositories.TodoRepository;
 import com.ktran.learningproject.todoapp.exceptions.TodoNotFoundException;
 import org.springframework.hateoas.CollectionModel;
@@ -37,6 +37,7 @@ public class TodoController {
                 .collect(Collectors.toList());
         return CollectionModel.of(todos,
                 linkTo(methodOn(TodoController.class).getAllTodosByUsername(username)).withSelfRel());
+
     }
 
     //Save a new todo

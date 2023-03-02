@@ -1,6 +1,6 @@
 package com.ktran.learningproject.todoapp.controllers;
 
-import com.ktran.learningproject.todoapp.entities.Todo;
+import com.ktran.learningproject.todoapp.models.Todo;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
