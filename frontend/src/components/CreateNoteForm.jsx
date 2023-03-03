@@ -35,7 +35,7 @@ export function CreateNoteForm({submitNote}) {
       title: title,
       type: 'text',
       username: 'bob',
-      "created_at": (new Date()).toJSON(),
+      "createdAt": (new Date()).toJSON(),
       content: content,
     }
     console.log(note);

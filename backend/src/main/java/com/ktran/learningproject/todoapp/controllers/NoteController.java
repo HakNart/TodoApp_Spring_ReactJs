@@ -46,7 +46,7 @@ public class NoteController {
     }
 
     @DeleteMapping(value="/users/{userName}/notes/{id}")
-    public void deleteNote(@PathVariable Long id) {
+    public void deleteNote(@PathVariable Long id, @PathVariable String userName) {
         repository.deleteById(id);
     }
 

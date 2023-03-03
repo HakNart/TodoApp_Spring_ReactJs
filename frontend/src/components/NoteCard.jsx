@@ -4,6 +4,9 @@ import { NoteContext } from "../pages/Notes";
 
 export default function NoteCard({ note, onEdit}) {
   const className = `card w-full max-w-[420px] mx-auto my-1 bg-base-200 text-base-content`;
+  if(note.type == "checklist") {
+    console.log(note);
+  }
   // const {toggleEditOn} = useContext(NoteContext);
 
   // const handleNoteCardClick = () => {
@@ -23,7 +26,7 @@ export default function NoteCard({ note, onEdit}) {
           {note.type == "text" && <p>{note.content}</p>}
           {note.type == "checklist" && (
             <ul>
-              {note.items.map((item) => (
+              {note.listItems.map((item) => (
                 <div className="form-control">
                   <label className="label cursor-pointer justify-start">
                     {/* TODO: set onChange behaviror to response to check/uncheck action */}
