@@ -20,7 +20,8 @@ public class TodoappApplication {
 				registry.addMapping("/**")
 						.allowedMethods("*")
 						.allowedOrigins("http://localhost:3000")
-						.allowedOrigins("http://localhost:5173");
+						.allowedOrigins("http://localhost:5173")
+						.allowedOrigins("http://127.0.0.1:5173");
 			}
 		};
 	}

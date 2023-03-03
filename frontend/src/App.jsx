@@ -1,34 +1,60 @@
 import { useState } from "react";
 import {
   BrowserRouter,
+  Navigate,
   Route,
   Routes,
   useNavigate,
   useParams,
 } from "react-router-dom";
 import "./App.css";
+import { LoginPage } from "./pages/LoginPage";
+import ErrorPage from "./pages/ErrorPage";
 import Layout from "./pages/Layout";
 import Notes from "./pages/Notes";
+import AuthProvide, { useAuth } from "./security/AuthContext";
 
 function App() {
   return (
-    <BrowserRouter>
+    <AuthProvide>
+      <BrowserRouter>
       <Layout>
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/:userName/notes" element={<Notes />} />
+          {/* Authenticated Route to all notes page */}
+          <Route path="/:userName/notes" element={
+          <AuthenticatedRoute>
+            <Notes />
+          </AuthenticatedRoute>
+          } />
+          {/* Authenticated Route to welcome page */}
           <Route
             path="/welcome/:userName"
-            element={<WelcomeComponent />}
+            element={
+            <AuthenticatedRoute>
+              <WelcomeComponent />
+            </AuthenticatedRoute>
+            }
           />
+          <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </Layout>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvide>
+    
   );
 }
 
 export default App;
+
+function AuthenticatedRoute({children}) {
+  const AuthContext = useAuth();
+  if(AuthContext.isAuthenticated) {
+    return children
+  }
+  return <Navigate to="/login" />
+}
 
 function WelcomeComponent() {
   const { userName } = useParams();
@@ -60,47 +86,4 @@ function WelcomeComponent() {
   );
 }
 
-function LoginPage() {
-  return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card w-full max-w-sm flex-shrink-0 bg-base-100 shadow-2xl">
-          <form className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Username</span>
-              </label>
-              <input
-                type="text"
-                placeholder="email"
-                className="input input-bordered"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="text"
-                placeholder="password"
-                className="input input-bordered"
-              />
-              <label className="label">
-                <a
-                  href="#"
-                  className="link-hover label-text-alt link"
-                >
-                  Forgot password?
-                </a>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn-primary btn">Login</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-}
 
