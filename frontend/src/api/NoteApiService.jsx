@@ -5,7 +5,11 @@ const baseUrl = "http://localhost:8080/users/bob";
 const fetchAbsolute = (url, ...params) => fetch(`${baseUrl}${url}`, ...params);
 
 export const retrieveAllNotes = () => {
-    return fetchAbsolute("/notes");
+    return fetchAbsolute("/notes",{
+        headers: {
+            Authorization: "Basic Ym9iOmJvYjEyMw=="
+        }
+    });
 }
 
 export const createNewNote = (data) => {

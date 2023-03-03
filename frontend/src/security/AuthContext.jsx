@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from "react";
 // Create a Context component
 export const AuthContext = createContext()
 
+// Provide convienient export function to grap all the contexts provided in the AuthContext
 export const useAuth = () => {
   return useContext(AuthContext)
 }
