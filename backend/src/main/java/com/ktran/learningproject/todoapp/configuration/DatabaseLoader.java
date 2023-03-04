@@ -26,11 +26,11 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        TextNote note1 = new TextNote("Meeting Notes", "bob", LocalDateTime.of(2019,2,13,12,40,56,400), "My first note");
-        TextNote note2 = new TextNote("Testing Notes", "bob", LocalDateTime.of(2017,2,13,12,40,56,400), "Bob second note");
-        TextNote note3 = new TextNote("Recipe for Pancakes", "sarah", LocalDateTime.of(2022,8,10,10,15,0,500), "Ingredients:\n- 1 cup flour\n- 2 tbsp sugar\n- 2 tsp baking powder\n- 1/2 tsp salt\n- 1 egg\n- 1 cup milk\n- 2 tbsp melted butter");
-        ChecklistNote checkList1 = new ChecklistNote("bob's tasks", "bob", LocalDateTime.now().minusDays(6));
-        ChecklistNote checkList2 = new ChecklistNote("sarah's tasks", "sarah", LocalDateTime.now().minusDays(5).minusMonths(13));
+        TextNote note1 = new TextNote("Meeting Notes", "bob", LocalDateTime.of(2019,2,13,12,40,56,400),"text", "My first note");
+        TextNote note2 = new TextNote("Testing Notes", "bob", LocalDateTime.of(2017,2,13,12,40,56,400),"text", "Bob second note");
+        TextNote note3 = new TextNote("Recipe for Pancakes", "sarah", LocalDateTime.of(2022,8,10,10,15,0,500), "text", "Ingredients:\n- 1 cup flour\n- 2 tbsp sugar\n- 2 tsp baking powder\n- 1/2 tsp salt\n- 1 egg\n- 1 cup milk\n- 2 tbsp melted butter");
+        ChecklistNote checkList1 = new ChecklistNote("bob's tasks", "bob", LocalDateTime.now().minusDays(6), "checklist");
+        ChecklistNote checkList2 = new ChecklistNote("sarah's tasks", "sarah", LocalDateTime.now().minusDays(5).minusMonths(13), "checklist");
 
 
         ListItem item1 = new ListItem("Go shopping", true);

@@ -30,6 +30,8 @@ public class AuthenticationSecurityConfiguration {
         );
         // Disable csrf
         http.csrf().disable();
+        // Allow frames for h2-console
+        http.headers().frameOptions().sameOrigin();
         return http.build();
     }
 }

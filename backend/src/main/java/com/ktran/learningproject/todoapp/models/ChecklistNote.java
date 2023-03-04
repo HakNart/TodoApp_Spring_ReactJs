@@ -1,5 +1,8 @@
 package com.ktran.learningproject.todoapp.models;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -9,38 +12,29 @@ import java.util.Objects;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "note_id")
-@DiscriminatorValue("checklist")
+//@DiscriminatorValue("checklist")
 public class ChecklistNote extends Note{
 
-
-    public ChecklistNote() {
-
-    }
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ListItem> listItems = new ArrayList<>();
 
 
-    public ChecklistNote(String title, String username, LocalDateTime createdAt) {
-        super(title, username, createdAt);
+    public ChecklistNote(String title, String username, LocalDateTime createdAt, String noteType) {
+        super(title, username, createdAt,noteType);
     }
 
-    public ChecklistNote(String title, String username, LocalDateTime createdAt, List<ListItem> listItems) {
-        super(title, username, createdAt);
+    public ChecklistNote(String title, String username, LocalDateTime createdAt, String noteType, List<ListItem> listItems) {
+        super(title, username, createdAt,noteType);
         this.listItems = listItems;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        ChecklistNote that = (ChecklistNote) o;
-        return Objects.equals(listItems, that.listItems);
+    public ChecklistNote() {
+
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), listItems);
+
+    public String getNoteType() {
+        return "checklist";
     }
 
     @Override

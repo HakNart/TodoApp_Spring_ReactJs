@@ -1,6 +1,8 @@
 package com.ktran.learningproject.todoapp.models;
 
-import jakarta.persistence.DiscriminatorValue;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
@@ -9,19 +11,31 @@ import java.util.Objects;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "note_id")
-@DiscriminatorValue("text")
+//@DiscriminatorValue("text")
 public class TextNote extends Note {
     private String content;
-
-    public TextNote(String title, String username, LocalDateTime createdAt, String content) {
-        super(title, username, createdAt);
-        this.content = content;
-    }
 
     public TextNote() {
 
     }
 
+    public TextNote(String title, String username, LocalDateTime createdAt, String noteType, String content) {
+        super(title, username, createdAt, noteType);
+        this.content = content;
+    }
+
+
+//    public String getType() {
+//        return "text";
+//    }
+//    public void setType(String type) {
+//        this.type = type;
+//    }
+
+
+    public String getNoteType() {
+        return "text";
+    }
     @Override
     public String toString() {
         return super.toString() +

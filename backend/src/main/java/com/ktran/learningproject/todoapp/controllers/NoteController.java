@@ -1,40 +1,63 @@
 package com.ktran.learningproject.todoapp.controllers;
 
+import com.ktran.learningproject.todoapp.modelAssembler.NoteModelAssembler;
 import com.ktran.learningproject.todoapp.models.Note;
 import com.ktran.learningproject.todoapp.repositories.NoteRepository;
-import org.springframework.data.repository.query.Param;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.http.ResponseEntity;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
+
+//import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+//import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
 
 @RestController
 public class NoteController {
     private final NoteRepository repository;
+    private final NoteModelAssembler assembler;
 
-    public NoteController(NoteRepository repository) {
+    public NoteController(NoteRepository repository, NoteModelAssembler assembler) {
         this.repository = repository;
+        this.assembler = assembler;
     }
 
     @GetMapping(value = "/users/{userName}/notes")
-    public List<Note> getAllNoteByUserName(@PathVariable String userName) {
-        List<Note> notes = repository.findAllByUserName(userName);
-        return notes;
+    public CollectionModel<EntityModel<Note>> getAllNoteByUserName(@PathVariable String userName) {
+        List<EntityModel<Note>> notes = repository.findAllByUserName(userName).stream()
+                .map(note -> assembler.toModel(note)).collect(Collectors.toList());
+        return CollectionModel.of(notes,
+                linkTo(methodOn(NoteController.class).getAllNoteByUserName(userName)).withSelfRel());
     }
 
-    //Deserialize JSON into a "Note" object hierarchy
+//    Deserialize JSON into a "Note" object hierarchy
     @PostMapping("/users/{userName}/notes")
     public Note createNewNote(@RequestBody Note newNote, @PathVariable String userName) {
-        newNote.setUsername(userName);
+        // Caution: the "noteType" field of the JSON request body is not mapped correctly to the Entity object
+        // newNote object is generated with corresponding note type
+        // Note: getNoteType() method of subclass is called instead of the superclass Note
+        String type = newNote.getNoteType();
+        // setNoteType() of the superclass Note to set the noteType
+        newNote.setNoteType(type);
+
         return repository.save(newNote);
     }
 
+
     @GetMapping(value = "/users/{userName}/notes/{id}")
     public Note getOneNote(@PathVariable Long id, @PathVariable String userName) {
-        // Todo: Set up NotFound exception
+
         Note note = repository.findById(id).orElseThrow();
         return note;
     }

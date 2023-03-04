@@ -2,18 +2,17 @@ package com.ktran.learningproject.todoapp.models;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="noteType")
 @JsonSubTypes({
         @JsonSubTypes.Type(value=TextNote.class, name="text"),
         @JsonSubTypes.Type(value=ChecklistNote.class, name="checklist")
 })
-@DiscriminatorColumn(name="type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Note {
 
     @Id
@@ -22,30 +21,41 @@ public abstract class Note {
 
     private String title, userName;
     private LocalDateTime createdAt;
-//    @Column(name="type")
-//    private String type;
 
+    @NotNull
+    private String noteType;
     public Note() {
 
     }
+
+    public Note(String title, String username, LocalDateTime createdAt, String noteType) {
+        this.title = title;
+        this.userName = username;
+        this.createdAt = createdAt;
+        this.noteType = noteType;
+    }
+
     public Note(String title, String username, LocalDateTime createdAt) {
         this.title = title;
         this.userName = username;
         this.createdAt = createdAt;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Note note = (Note) o;
-        return Objects.equals(id, note.id) && Objects.equals(title, note.title) && Objects.equals(userName, note.userName) && Objects.equals(createdAt, note.createdAt);
-    }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, title, userName, createdAt);
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", userName='" + userName + '\'' +
+                ", createdAt=" + createdAt +
+                ", noteType='" + noteType + '\'' +
+                '}';
     }
+
+    //    public abstract void setType(String type);
+//    public abstract String getType();
+
 
     public Long getId() {
         return id;
@@ -63,13 +73,6 @@ public abstract class Note {
         this.title = title;
     }
 
-    public String getUsername() {
-        return userName;
-    }
-
-    public void setUsername(String userName) {
-        this.userName = userName;
-    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -79,5 +82,19 @@ public abstract class Note {
         this.createdAt = createdAt;
     }
 
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getNoteType() {
+        return noteType;
+    }
+
+    public void setNoteType(String noteType) {
+        this.noteType = noteType;
+    }
 }
