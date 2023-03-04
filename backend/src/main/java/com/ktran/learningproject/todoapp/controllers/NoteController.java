@@ -1,6 +1,6 @@
 package com.ktran.learningproject.todoapp.controllers;
 
-import com.ktran.learningproject.todoapp.modelAssembler.NoteModelAssembler;
+//import com.ktran.learningproject.todoapp.modelAssembler.NoteModelAssembler;
 import com.ktran.learningproject.todoapp.models.Note;
 import com.ktran.learningproject.todoapp.repositories.NoteRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,19 +26,18 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 public class NoteController {
     private final NoteRepository repository;
-    private final NoteModelAssembler assembler;
+//    private final NoteModelAssembler assembler;
 
-    public NoteController(NoteRepository repository, NoteModelAssembler assembler) {
+    public NoteController(NoteRepository repository) {
         this.repository = repository;
-        this.assembler = assembler;
+//        this.assembler = assembler;
     }
 
     @GetMapping(value = "/users/{userName}/notes")
-    public CollectionModel<EntityModel<Note>> getAllNoteByUserName(@PathVariable String userName) {
-        List<EntityModel<Note>> notes = repository.findAllByUserName(userName).stream()
-                .map(note -> assembler.toModel(note)).collect(Collectors.toList());
-        return CollectionModel.of(notes,
-                linkTo(methodOn(NoteController.class).getAllNoteByUserName(userName)).withSelfRel());
+    public List<Note> getAllNoteByUserName(@PathVariable String userName) {
+        List<Note> notes = repository.findAllByUserName(userName);
+
+        return notes;
     }
 
 //    Deserialize JSON into a "Note" object hierarchy
