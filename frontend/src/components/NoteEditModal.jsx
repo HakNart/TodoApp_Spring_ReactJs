@@ -25,7 +25,34 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
     onDelete(note.id);
     onClose();
   }
+  let editBody, currentNote;
   
+  if (note && note.type == "text") {
+    editBody = <textarea
+    rows={4}
+    name="content"
+    value={content}
+    onChange={handleContentChange}
+    className="min-h-20 m-0 block max-h-[50vh] w-full resize-none border-0 border-none border-current bg-transparent p-0 leading-normal outline-none"
+    >
+    </textarea>
+  } else if (note && note.type == "checklist") {
+    editBody = <ul>
+    {note.listItems.map((item) => (
+      <div key={item.id} className="form-control">
+        <label className="label cursor-pointer justify-start">
+          {/* TODO: set onChange behaviror to response to check/uncheck action */}
+          <input
+            type="checkbox"
+            className="checkbox-success checkbox"
+            defaultChecked={item.checked}
+          />
+          <span className="label-text pl-1">{item.text}</span>
+        </label>
+      </div>
+    ))}
+  </ul>
+  }
   return (
     <div 
       className="hidden z-1 fixed left-0 top-0 h-screen w-screen overflow-y-hidden bg-[rgba(0,0,0,0.2)] pt-24"
@@ -33,6 +60,46 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
       >
       <div className="m-auto max-w-md bg-base-200 p-5 text-base-content rounded-lg">
         <form onSubmit={handleNoteUpdate}>
+          <input
+            type="text"
+            value={title}
+            onChange={handleTitleChange}
+            className="m-b-0 block w-full border-none bg-transparent p-0 font-bold outline-none" />
+          {editBody}
+          {/* if (note.type == "checklist") {
+
+          }
+          <div>
+            {note.listItems.map((item) => (
+              <div key={item.id} className="form-control">
+                <label className="label cursor-pointer justify-start">
+                  <input
+                    type="checkbox"
+                    className="checkbox-success checkbox"
+                    defaultChecked={item.checked}
+                  />
+                  <span className="label-text pl-1">{item.text}</span>
+                </label>
+              </div>
+            )}
+            </div>
+          }  */}
+          
+          <div className='flex justify-between'>
+          <button className="btn btn-sm btn-success">Save</button>
+          <button className='btn btn-error btn-sm' onClick={handleNoteDelete}>Delete</button>
+          </div>
+          
+        </form>
+        
+      </div>
+    </div>
+  );
+}
+
+function TextNoteEditForm({handleNoteUpdate, handleTitleChange, handleContentChange, handleNoteDelete}) {
+  return (
+    <form onSubmit={handleNoteUpdate}>
           <input
             type="text"
             value={title}
@@ -52,7 +119,5 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
           </div>
           
         </form>
-      </div>
-    </div>
-  );
+  )
 }

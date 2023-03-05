@@ -27,13 +27,13 @@ export default function NoteCard({ note, onEdit}) {
           {note.type == "checklist" && (
             <ul>
               {note.listItems.map((item) => (
-                <div className="form-control">
+                <div key={item.id} className="form-control">
                   <label className="label cursor-pointer justify-start">
                     {/* TODO: set onChange behaviror to response to check/uncheck action */}
                     <input
                       type="checkbox"
                       className="checkbox-success checkbox"
-                      checked={item.checked}
+                      defaultChecked={item.checked}
                     />
                     <span className="label-text pl-1">{item.text}</span>
                   </label>
