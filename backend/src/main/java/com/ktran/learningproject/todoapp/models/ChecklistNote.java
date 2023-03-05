@@ -11,16 +11,18 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "note_id")
+@PrimaryKeyJoinColumn(name = "checklist_id", referencedColumnName = "note_id")
 //@DiscriminatorValue("checklist")
 public class ChecklistNote extends Note{
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ListItem> listItems = new ArrayList<>();
 
+    public ChecklistNote() {
 
-    public ChecklistNote(String title, String username, LocalDateTime createdAt, String noteType) {
-        super(title, username, createdAt,noteType);
+    }
+    public ChecklistNote(String title, String username, LocalDateTime createdAt, String type) {
+        super(title, username, createdAt, type);
     }
 
     public ChecklistNote(String title, String username, LocalDateTime createdAt, String noteType, List<ListItem> listItems) {
@@ -28,14 +30,6 @@ public class ChecklistNote extends Note{
         this.listItems = listItems;
     }
 
-    public ChecklistNote() {
-
-    }
-
-
-    public String getNoteType() {
-        return "checklist";
-    }
 
     @Override
     public String toString() {

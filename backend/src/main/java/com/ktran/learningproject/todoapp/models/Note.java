@@ -2,44 +2,38 @@ package com.ktran.learningproject.todoapp.models;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="noteType")
+@Table(name = "notes")@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="type", visible = true, include = JsonTypeInfo.As.EXISTING_PROPERTY)
 @JsonSubTypes({
         @JsonSubTypes.Type(value=TextNote.class, name="text"),
         @JsonSubTypes.Type(value=ChecklistNote.class, name="checklist")
 })
+
 public abstract class Note {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "note_id")
     private Long id;
 
-    private String title, userName;
+    private String title;
+    private String userName;
     private LocalDateTime createdAt;
-
-    @NotNull
-    private String noteType;
+    private String type;
     public Note() {
-
     }
 
-    public Note(String title, String username, LocalDateTime createdAt, String noteType) {
+    public Note(String title, String username, LocalDateTime createdAt,String type) {
         this.title = title;
         this.userName = username;
         this.createdAt = createdAt;
-        this.noteType = noteType;
+        this.type = type;
     }
 
-    public Note(String title, String username, LocalDateTime createdAt) {
-        this.title = title;
-        this.userName = username;
-        this.createdAt = createdAt;
-    }
 
 
     @Override
@@ -49,12 +43,9 @@ public abstract class Note {
                 ", title='" + title + '\'' +
                 ", userName='" + userName + '\'' +
                 ", createdAt=" + createdAt +
-                ", noteType='" + noteType + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
-
-    //    public abstract void setType(String type);
-//    public abstract String getType();
 
 
     public Long getId() {
@@ -73,6 +64,13 @@ public abstract class Note {
         this.title = title;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -82,19 +80,11 @@ public abstract class Note {
         this.createdAt = createdAt;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getType() {
+        return type;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getNoteType() {
-        return noteType;
-    }
-
-    public void setNoteType(String noteType) {
-        this.noteType = noteType;
+    public void setType(String noteType) {
+        this.type = noteType;
     }
 }
