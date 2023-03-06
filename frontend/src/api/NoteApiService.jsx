@@ -88,7 +88,7 @@ export const updateNoteApi= (username,id, data) => {
 }
 
 export const deleteNoteApi= (username, id) => {
-    return apiClient.fetch(`/users/${username}/notes/${id}`, {
+    return apiClient.apiFetch(`/users/${username}/notes/${id}`, {
         method: "DELETE",
     })
 }

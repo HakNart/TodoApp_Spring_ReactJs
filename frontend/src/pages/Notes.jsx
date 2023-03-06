@@ -41,7 +41,6 @@ export default function Notes() {
   }
   const onNoteDelete = (id) => {
     deleteNoteApi(userName,id)
-      .then(res => res.json())
       .then(() => {
         console.log("Success: Note", id, "was deleted")
         setUpdated(true);

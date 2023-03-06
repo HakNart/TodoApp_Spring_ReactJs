@@ -6,6 +6,8 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
   
   const [title, setTitle] = useState(note?note.title : '');
   const [content, setContent] = useState(note?note.content : '');
+  const [itemList, setItemList] = useState(note&&note.type=="checklist"?note.listItems: null);
+  // Handle list item
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -20,12 +22,15 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
     onUpdate(note.id, note);
     onClose();
   };
+  const handleCheckListItemChange = (e) => {
+    
+  }
   const handleNoteDelete = (e) => {
     e.preventDefault();
     onDelete(note.id);
     onClose();
   }
-  let editBody, currentNote;
+  let editBody;
   
   if (note && note.type == "text") {
     editBody = <textarea
@@ -39,13 +44,13 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
   } else if (note && note.type == "checklist") {
     editBody = <ul>
     {note.listItems.map((item) => (
-      <div key={item.id} className="form-control">
+      <div key={note.listItems.id} className="form-control">
         <label className="label cursor-pointer justify-start">
-          {/* TODO: set onChange behaviror to response to check/uncheck action */}
           <input
             type="checkbox"
             className="checkbox-success checkbox"
             defaultChecked={item.checked}
+            onChange={()=>handleCheckListItemChange(note.listItems.id)}
           />
           <span className="label-text pl-1">{item.text}</span>
         </label>
@@ -66,24 +71,7 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
             onChange={handleTitleChange}
             className="m-b-0 block w-full border-none bg-transparent p-0 font-bold outline-none" />
           {editBody}
-          {/* if (note.type == "checklist") {
-
-          }
-          <div>
-            {note.listItems.map((item) => (
-              <div key={item.id} className="form-control">
-                <label className="label cursor-pointer justify-start">
-                  <input
-                    type="checkbox"
-                    className="checkbox-success checkbox"
-                    defaultChecked={item.checked}
-                  />
-                  <span className="label-text pl-1">{item.text}</span>
-                </label>
-              </div>
-            )}
-            </div>
-          }  */}
+          
           
           <div className='flex justify-between'>
           <button className="btn btn-sm btn-success">Save</button>
