@@ -45,7 +45,7 @@ export const excecuteBasicAuthentication = (token) => {
     })
 }
 // Modify baseUrl for production
-const fetchAbsolute = (url, ...params) => fetch(`${baseUrl}${url}`, ...params);
+//const fetchAbsolute = (url, ...params) => fetch(`${baseUrl}${url}`, ...params);
 
 export const retrieveAllNotes = (username) => {
     // return fetchAbsolute("/notes");
@@ -55,6 +55,9 @@ export const retrieveAllNotes = (username) => {
 }
 
 export const createNewNote = (username, data) => {
+    console.log("New Note created: ");
+    console.log("Username:" + username);
+    console.log(data);
     return apiClient.apiFetch(`/users/${username}/notes`, {
         method: "POST",
         headers: {
@@ -72,8 +75,10 @@ export const createNewNote = (username, data) => {
     // })
 }
 
-export const updateNoteApi= (id, data) => {
-    return fetchAbsolute(`/notes/${id}`, {
+export const updateNoteApi= (username,id, data) => {
+    console.log("Note updated");
+    console.log(data);
+    return apiClient.apiFetch(`/users/${username}/notes/${id}`, {
         method: "PUT",
         headers: {
             'Content-type': 'application/json',
@@ -82,8 +87,8 @@ export const updateNoteApi= (id, data) => {
     })
 }
 
-export const deleteNoteApi= (id) => {
-    return fetchAbsolute(`/notes/${id}`, {
+export const deleteNoteApi= (username, id) => {
+    return apiClient.fetch(`/users/${username}/notes/${id}`, {
         method: "DELETE",
     })
 }

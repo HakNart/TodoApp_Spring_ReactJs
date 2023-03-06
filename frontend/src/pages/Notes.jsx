@@ -30,7 +30,7 @@ export default function Notes() {
     setSelectedNote(index)
   }
   const onNoteUpdate = (id, note) => {
-    updateNoteApi(id, note)
+    updateNoteApi(userName,id, note)
       .then((res) => res.json())
       .then((data) => {
         console.log("Sucess:", data)
@@ -40,7 +40,7 @@ export default function Notes() {
       })
   }
   const onNoteDelete = (id) => {
-    deleteNoteApi(id)
+    deleteNoteApi(userName,id)
       .then(res => res.json())
       .then(() => {
         console.log("Success: Note", id, "was deleted")
@@ -52,6 +52,8 @@ export default function Notes() {
   }
   
   const onNewNoteCreate = (note) => {
+    console.log("Note Component-on New Note Created");
+    console.log(note);
     createNewNote(userName, note)
       .then((res) => res.json())
       .then((data) => {

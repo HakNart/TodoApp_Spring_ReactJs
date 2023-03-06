@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { createNewNote, updateNoteApi } from '../api/NoteApiService';
 import { NoteContext } from '../pages/Notes';
+import { useAuth } from '../security/AuthContext';
 
 export function CreateNoteForm({submitNote, onNewNoteCreate}) {
   const [isFormExpanded, setFormExpanded] = useState(false);
@@ -9,6 +10,7 @@ export function CreateNoteForm({submitNote, onNewNoteCreate}) {
   const [content, setContent] = useState("");
 
   const {refreshNotes} = useContext(NoteContext);
+  const authContext = useAuth();
 
   const toggleForm = (e) => {
     if (!e.currentTarget.contains(e.relatedTarget)) {
@@ -34,10 +36,11 @@ export function CreateNoteForm({submitNote, onNewNoteCreate}) {
     const note = {
       title: title,
       type: 'text',
-      username: 'bob',
+      userName: authContext.username,
       "createdAt": (new Date()).toJSON(),
       content: content,
     }
+    console.log("Create Note Form - Note created:");
     console.log(note);
     onNewNoteCreate(note)
     submitNote();
