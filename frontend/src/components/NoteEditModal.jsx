@@ -18,12 +18,19 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
   const handleNoteUpdate = (e) => {
     e.preventDefault();
     note.title = title;
-    note.content = content;
+    if(note.type == "text"){
+      note.content = content;
+    }
+    else if (note.type == "checklist"){
+      note.listItems = itemList;
+    }
     onUpdate(note.id, note);
     onClose();
   };
-  const handleCheckListItemChange = (e) => {
-    
+  const handleCheckListItemChange = (e, id) => {
+    let item = itemList.find(item => item.id == id);
+    item.checked = e.target.checked;
+    setItemList([...itemList]);
   }
   const handleNoteDelete = (e) => {
     e.preventDefault();
@@ -44,13 +51,14 @@ export function NoteEditModal({note, isOpen, onClose, onUpdate, onDelete}) {
   } else if (note && note.type == "checklist") {
     editBody = <ul>
     {note.listItems.map((item) => (
-      <div key={note.listItems.id} className="form-control">
+      <div key={item.id} className="form-control">
         <label className="label cursor-pointer justify-start">
           <input
             type="checkbox"
             className="checkbox-success checkbox"
-            defaultChecked={item.checked}
-            onChange={()=>handleCheckListItemChange(note.listItems.id)}
+            // defaultChecked={item.checked}
+            checked={item.checked}
+            onChange={(e)=>handleCheckListItemChange(e, item.id)}
           />
           <span className="label-text pl-1">{item.text}</span>
         </label>
